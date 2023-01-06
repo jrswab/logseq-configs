@@ -200,7 +200,7 @@
 
  :ref/linked-references-collapsed-threshold 50
 
- :favorites ["Home" "SCIDX" "Zettelkasten Flywheel Course" "LTK" "TODO" "On Call" "How to take dummy notes?"]
+ :favorites ["Home" "SCIDX" "LTK" "TODO" "On Call"]
  :journal/page-title-format "yyyy.MM.dd - EEE"
  :journal/file-name-format "yyyy_MM_dd"
  :feature/enable-flashcards? true
