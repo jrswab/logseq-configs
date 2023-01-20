@@ -33,9 +33,10 @@
     --ls-link-ref-text-color: var(--ls-link-text-color);
 
     --ls-page-inline-code-color: var(--aurora-green);
-	--ls-page-inline-code-bg-color: var(--polar-night-02);
+	--ls-page-inline-code-bg-color: var(--ls-tertiary-background-color);
 
-    --ls-block-highlight-color: var(--polar-night-01);
+    --ls-block-properties-background-color: var(--ls-secondary-background-color);
+    --ls-block-highlight-color: var(--polar-night-02);
     --ls-block-bullet-border-color: var(--polar-night-02);
     --ls-block-bullet-color: var(--aurora-green);
 
