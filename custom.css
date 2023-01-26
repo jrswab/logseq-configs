@@ -1,4 +1,13 @@
+@font-face {
+    font-family: "JetBrains Mono";
+    font-weight: 200 900;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("https://fonts.googleapis.com/css2?family=JetBrains+Mono");
+  }
+
 :root {
+  --ls-font-family: "JetBrains Mono";
   /* Nord by arcticicestudio */
   --polar-night-00: #2E3440;
   --polar-night-01: #3B4252;
