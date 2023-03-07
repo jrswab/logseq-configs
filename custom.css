@@ -1,13 +1,5 @@
-@font-face {
-    font-family: "JetBrains Mono";
-    font-weight: 200 900;
-    font-style: normal;
-    font-stretch: normal;
-    src: url("https://fonts.googleapis.com/css2?family=JetBrains+Mono");
-  }
-
 :root {
-  --ls-font-family: "JetBrains Mono";
+  /*--ls-font-family: "JetBrains Mono"; */
   /* Nord by arcticicestudio */
   --polar-night-00: #2E3440;
   --polar-night-01: #3B4252;
@@ -63,13 +55,14 @@
 
     --ls-page-mark-color: var(--ls-primary-background-color);
     --ls-page-mark-bg-color: var(--aurora-yellow);
+    --ls-page-properties-background-color: var(--ls-secondary-background-color);
 
     --ls-title-text-color: var(--aurora-green);
     --ls-head-text-color: var(--ls-link-text-color);
     --ls-primary-text-color: var(--snow-storm-00);
     --ls-secondary-text-color: var(--snow-storm-01);
 
-    --ls-guideline-color: var(--aurora-green);
+    --ls-guideline-color: var(--polar-night-01);
     --ls-icon-color: var(--snow-storm-01);
     --ls-border-color: var(--polar-night-03);
     --ls-menu-hover-color: var(--ls-secondary-background-color);
@@ -104,3 +97,7 @@ a.tag {
     color: var(--ls-secondary-background-color);
 }
 
+/* Wrap the content inside code blocks */
+pre, code {
+  white-space : pre-wrap !important;
+}
