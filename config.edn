@@ -200,11 +200,11 @@
 
  :ref/linked-references-collapsed-threshold 50
 
- :favorites ["Templates" "Home" "SCIDX" "LTK" "TODO" "On Call"]
+ :favorites ["inbox" "Templates" "Home" "SCIDX" "LTK" "TODO" "On Call"]
  :journal/page-title-format "yyyy.MM.dd - EEE"
  :journal/file-name-format "yyyy_MM_dd"
  :feature/enable-flashcards? true
- :graph/settings {:builtin-pages? true, :journal? false}
+ :graph/settings {:builtin-pages? true, :journal? true, :orphan-pages? true, :excluded-pages? false}
 
  ;; any number between 0 and 1 (the greater it is the faster the changes of the next-interval of card reviews) (default 0.5)
  ;; :srs/learning-fraction 0.5
@@ -214,14 +214,14 @@
 
  ;; hide specific properties for blocks
  ;; E.g. #{:created-at :updated-at}
- ;; :block-hidden-properties #{}
+ ;; :block-hidden-properties #{:block-tags}
 
  ;; logbook setup
- ;; :logbook/settings
- ;; {:with-second-support? false ;limit logbook to minutes, seconds will be eliminated
- ;;  :enabled-in-all-blocks true ;display logbook in all blocks after timetracking
- ;;  :enabled-in-timestamped-blocks false ;don't display logbook at all
- ;; }
+ :logbook/settings
+  {:with-second-support? false ;limit logbook to minutes, seconds will be eliminated
+   :enabled-in-all-blocks false ;display logbook in all blocks after timetracking
+   :enabled-in-timestamped-blocks false ;don't display logbook at all
+  }
 
  ;; Mobile photo uploading setup
  ;; :mobile/photo
