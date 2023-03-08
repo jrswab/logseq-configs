@@ -134,35 +134,21 @@
  ;; The app will show those queries in today's journal page,
  :default-queries
  {:journals
-   [{:title "📅 TODAY"
-    :query [:find (pull ?a [*])
-            :in $ ?start
-            :where
-            (or
-            [?a :block/scheduled ?d]
-            [?a :block/deadline ?d]
-            )
-            [(= ?d ?start)]]
-    :inputs [:today]
-    :breadcrumb-show? false
-    :collapsed? false}
-
-   {:title "🗓️ AGENDA"
+   [{:title "🗓️ AGENDA"
     :query [:find (pull ?a [*])
             :in $ ?start ?next
             :where
             (or
-            [?a :block/scheduled ?d]
-            [?a :block/deadline ?d]
+                [?a :block/scheduled ?d]
+                [?a :block/deadline ?d]
             )
-            [(> ?d ?start)]
+            [(>= ?d ?start)]
             [(< ?d ?next)]]
     :inputs [:today :7d-after]
     :breadcrumb-show? false
     :result-transform (fn [result]
-                        (sort-by (fn [d]
-                                   (get d :block/scheduled)
-                                   (get d :block/deadline)) result))
+	                   (sort-by (fn [h]
+	                     (or (get h :block/scheduled) (get h :block/deadline))) result))
     :collapsed? false}
    ]}
 
