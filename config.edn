@@ -28,7 +28,7 @@
  :feature/enable-block-timestamps? false
 
  ;; Disable Built-in Scheduled and deadline Query
- ;; :feature/disable-scheduled-and-deadline-query? true
+ :feature/disable-scheduled-and-deadline-query? true
 
  ;; Specify the date on which the week starts.
  ;; Goes from 0 to 6 (Monday to Sunday), default to 6
@@ -132,39 +132,72 @@
   (fn [result] (sort-by (fn [h] (get h :block/priority "Z")) result))}
 
  ;; The app will show those queries in today's journal page,
- ;; the "NOW" query asks the tasks which need to be finished "now",
- ;; the "NEXT" query asks the future tasks.
  :default-queries
  {:journals
-  [{:title "🔨 NOW"
-    :query [:find (pull ?h [*])
-            :in $ ?start ?today
+   [{:title "📅 TODAY"
+    :query [:find (pull ?a [*])
+            :in $ ?start
             :where
-            [?h :block/marker ?marker]
-            [(contains? #{"NOW" "DOING"} ?marker)]
-            [?h :block/page ?p]
-            [?p :block/journal? true]
-            [?p :block/journal-day ?d]
-            [(>= ?d ?start)]
-            [(<= ?d ?today)]]
-    :inputs [:14d :today]
-    :result-transform (fn [result]
-                        (sort-by (fn [h]
-                                   (get h :block/priority "Z")) result))
+            (or
+            [?a :block/scheduled ?d]
+            [?a :block/deadline ?d]
+            )
+            [(= ?d ?start)]]
+    :inputs [:today]
+    :breadcrumb-show? false
     :collapsed? false}
-   {:title "📅 NEXT"
-    :query [:find (pull ?h [*])
+
+   {:title "🗓️ AGENDA"
+    :query [:find (pull ?a [*])
             :in $ ?start ?next
             :where
-            [?h :block/marker ?marker]
-            [(contains? #{"NOW" "LATER" "TODO"} ?marker)]
-            [?h :block/ref-pages ?p]
-            [?p :block/journal? true]
-            [?p :block/journal-day ?d]
+            (or
+            [?a :block/scheduled ?d]
+            [?a :block/deadline ?d]
+            )
             [(> ?d ?start)]
             [(< ?d ?next)]]
     :inputs [:today :7d-after]
-    :collapsed? false}]}
+    :breadcrumb-show? false
+    :result-transform (fn [result]
+                        (sort-by (fn [d]
+                                   (get d :block/scheduled)
+                                   (get d :block/deadline)) result))
+    :collapsed? false}
+   ]}
+
+ ;; Original Queries:
+ ;; the "NOW" query asks the tasks which need to be finished "now",
+ ;; the "NEXT" query asks the future tasks.
+ ;;{:title "🔨 NOW"
+ ;; :query [:find (pull ?h [*])
+ ;;         :in $ ?start ?today
+ ;;         :where
+ ;;         [?h :block/marker ?marker]
+ ;;         [(contains? #{"NOW" "DOING"} ?marker)]
+ ;;         [?h :block/page ?p]
+ ;;         [?p :block/journal? true]
+ ;;         [?p :block/journal-day ?d]
+ ;;         [(>= ?d ?start)]
+ ;;         [(<= ?d ?today)]]
+ ;; :inputs [:14d :today]
+ ;; :result-transform (fn [result]
+ ;;                     (sort-by (fn [h]
+ ;;                                (get h :block/priority "Z")) result))
+ ;; :collapsed? false}
+ ;;{:title "📅 NEXT"
+ ;; :query [:find (pull ?h [*])
+ ;;         :in $ ?start ?next
+ ;;         :where
+ ;;         [?h :block/marker ?marker]
+ ;;         [(contains? #{"NOW" "LATER" "TODO"} ?marker)]
+ ;;         [?h :block/ref-pages ?p]
+ ;;         [?p :block/journal? true]
+ ;;         [?p :block/journal-day ?d]
+ ;;         [(> ?d ?start)]
+ ;;         [(< ?d ?next)]]
+ ;; :inputs [:today :7d-after]
+ ;; :collapsed? false}
 
  ;; Add your own commands to speedup.
  ;; E.g. [["js" "Javascript"]]
