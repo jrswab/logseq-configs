@@ -1,40 +1,77 @@
 :root {
-  /*--ls-font-family: "JetBrains Mono"; */
-  /* Nord by arcticicestudio */
-  --polar-night-00: #2E3440;
-  --polar-night-01: #3B4252;
-  --polar-night-02: #434C5E;
-  --polar-night-03: #4C566A;
-  --snow-storm-00: #D8DEE9;
-  --snow-storm-01: #E5E9F0;
-  --snow-storm-02: #ECEFF4;
-  --frost-00: #8FBCBB;
-  --frost-01: #88C0D0;
-  --frost-02: #81A1C1;
-  --frost-03: #5E81AC;
-  --aurora-red: #BF616A;
-  --aurora-orange: #D08770;
-  --aurora-yellow: #EBCB8B;
-  --aurora-green: #A3BE8C;
-  --aurora-purple: #B48EAD;
-  --button-blue: var(--frost-01);
-  --button-gray-1: var(--snow-storm-01);
-  --button-gray-2: var(--snow-storm-02);
-  --button-gray-3: var(--frost-00);
+    /*--ls-font-family: "JetBrains Mono"; */
+    /* Nord by arcticicestudio */
+    --polar-night-00: #2E3440;
+    --polar-night-01: #3B4252;
+    --polar-night-02: #434C5E;
+    --polar-night-03: #4C566A;
+    --snow-storm-00: #D8DEE9;
+    --snow-storm-01: #E5E9F0;
+    --snow-storm-02: #ECEFF4;
+    --snow-storm-03: #f8f8fa;
+    --frost-00: #8FBCBB;
+    --frost-01: #88C0D0;
+    --frost-02: #81A1C1;
+    --frost-03: #5E81AC;
+    --aurora-red: #BF616A;
+    --aurora-orange: #D08770;
+    --aurora-yellow: #EBCB8B;
+    --aurora-green: #A3BE8C;
+    --aurora-green-hover: #90bb6a;
+    --aurora-purple: #B48EAD;
+    --button-blue: var(--frost-01);
+    --button-gray-1: var(--snow-storm-01);
+    --button-gray-2: var(--snow-storm-02);
+    --button-gray-3: var(--frost-00);
 }
 
-.light-theme, html[data-theme=light]{
-    --ls-primary-background-color: var(--snow-storm-00);
-    --ls-secondary-background-color: var(--snow-storm-01);
-    --ls-tertiary-background-color: var(--snow-storm-02);
-	--ls-quaternary-background-color: var(--frost-00);
-  
-    --ls-link-text-color: var(--polar-night-00);
-    --ls-link-text-hover-color: var(--frost-01);
-    --ls-link-ref-text-color: var(--ls-link-text-color);
+.light-theme, html[data-theme="light"] {
+    --ls-primary-background-color: var(--snow-storm-03);
+    --ls-secondary-background-color: var(--snow-storm-02);
+    --ls-tertiary-background-color: var(--snow-storm-01);
+	--ls-quaternary-background-color: var(--snow-storm-00);
 
-    --ls-page-inline-code-color: var(--aurora-green);
-	--ls-page-inline-code-bg-color: var(--ls-tertiary-background-color);
+    --ls-link-text-color: var(--frost-03);
+
+    --ls-page-inline-code-color: var(--frost-03);
+	--ls-page-inline-code-bg-color: var(--snow-storm-00);
+
+    --ls-block-properties-background-color: var(--snow-storm-02);
+    --ls-block-highlight-color: var(--snow-storm-02);
+    --ls-block-bullet-border-color: var(--snow-storm-01);
+    --ls-block-bullet-color: var(--frost-00);
+
+    --ls-page-checkbox-color: var(--snow-storm-00);
+
+    --ls-primary-text-color: var(--polar-night-00);
+    --ls-title-text-color: var(--polar-night-03);
+    --ls-head-text-color: var(--frost-00);
+    --ls-secondary-text-color: var(--polar-night-01);
+
+    --ls-scrollbar-color: var(--snow-storm-00);
+    --ls-scrollbar-foreground-color: var(--snow-storm-00);
+    --ls-scrollbar-thumb-hover-color: var(--snow-storm-00);
+
+    --ls-search-icon-color: var(--frost-00);
+    --ls-search-background-color: var(--snow-storm-03);
+
+    --ls-selection-background-color: var(--frost-02);
+    --ls-selection-text-color: var(--ls-primary-text-color);
+
+    --ls-page-mark-color: var(--ls-primary-background-color);
+    --ls-page-mark-bg-color: var(--aurora-yellow);
+    --ls-page-properties-background-color: var(--ls-secondary-background-color);
+
+    --ls-guideline-color: var(--ls-secondary-background-color);
+    --ls-icon-color: var(--ls-secondary-background-color);
+    --ls-border-color: var(--ls-quaternary-background-color);
+    --ls-menu-hover-color: var(--ls-secondary-background-color);
+
+    --ls-table-tr-even-background-color: var(--ls-secondary-background-color);
+
+    --color-level-4: var(--frost-03);
+    --color-level-5: var(--frost-02);
+    --color-level-6: var(--frost-01);
 }
 
 .dark-theme, html[data-theme=dark] {
@@ -43,17 +80,15 @@
     --ls-tertiary-background-color: var(--polar-night-02);
 	--ls-quaternary-background-color: var(--polar-night-03);
 
-    --ls-link-text-color: var(--frost-02);
-    --ls-link-text-hover-color: var(--frost-01);
-    --ls-link-ref-text-color: var(--ls-link-text-color);
+    --ls-link-text-color: var(--frost-00);
 
-    --ls-page-inline-code-color: var(--aurora-green);
-	--ls-page-inline-code-bg-color: var(--ls-tertiary-background-color);
+    --ls-page-inline-code-color: var(--frost-00);
+	--ls-page-inline-code-bg-color: var(--polar-night-02);
 
     --ls-block-properties-background-color: var(--ls-secondary-background-color);
     --ls-block-highlight-color: var(--polar-night-02);
     --ls-block-bullet-border-color: var(--polar-night-02);
-    --ls-block-bullet-color: var(--aurora-green);
+    --ls-block-bullet-color: var(--frost-00);
 
     --ls-page-checkbox-color: var(--polar-night-03);
 
@@ -61,7 +96,7 @@
     --ls-scrollbar-foreground-color: var(--polar-night-03);
     --ls-scrollbar-thumb-hover-color: var(--polar-night-03);
 
-    --ls-search-icon-color: var(--ls-link-text-color);
+    --ls-search-icon-color: var(--frost-00);
     --ls-search-background-color: var(--ls-primary-background-color);
 
     --ls-selection-background-color: var(--frost-02);
@@ -72,7 +107,7 @@
     --ls-page-properties-background-color: var(--ls-secondary-background-color);
 
     --ls-title-text-color: var(--aurora-green);
-    --ls-head-text-color: var(--ls-link-text-color);
+    --ls-head-text-color: var(--frost-00);
     --ls-primary-text-color: var(--snow-storm-00);
     --ls-secondary-text-color: var(--snow-storm-01);
 
@@ -90,7 +125,7 @@
 
 /* Force Selected Sidebar Item Style */
 .left-sidebar-inner a.item.active {
-    background-color: var(--aurora-green);
+    background-color: var(--frost-00);
     color: var(--ls-secondary-background-color);
 }
 
@@ -107,7 +142,7 @@ a.tag {
 }
 
 .ui__button {
-    background-color: var(--aurora-green);
+    background-color: var(--frost-00);
     color: var(--ls-secondary-background-color);
 }
 
