@@ -23,6 +23,20 @@
   --button-gray-3: var(--frost-00);
 }
 
+.light-theme, html[data-theme=light]{
+    --ls-primary-background-color: var(--snow-storm-00);
+    --ls-secondary-background-color: var(--snow-storm-01);
+    --ls-tertiary-background-color: var(--snow-storm-02);
+	--ls-quaternary-background-color: var(--frost-00);
+  
+    --ls-link-text-color: var(--polar-night-00);
+    --ls-link-text-hover-color: var(--frost-01);
+    --ls-link-ref-text-color: var(--ls-link-text-color);
+
+    --ls-page-inline-code-color: var(--aurora-green);
+	--ls-page-inline-code-bg-color: var(--ls-tertiary-background-color);
+}
+
 .dark-theme, html[data-theme=dark] {
     --ls-primary-background-color: var(--polar-night-00);
     --ls-secondary-background-color: var(--polar-night-01);

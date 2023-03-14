@@ -134,24 +134,53 @@
  ;; The app will show those queries in today's journal page,
  :default-queries
  {:journals
-   [{:title "🗓️ AGENDA"
-    :query [:find (pull ?b [*])
-            :in $ ?start ?next
-            :where
-              (or
-                [?b :block/scheduled ?d]
-                [?b :block/deadline ?d]
-              )
-              [(>= ?d ?start)]
-              [(<= ?d ?next)]
-           ]
-    :inputs [:today :7d-after]
-    :breadcrumb-show? false
-    :result-transform (fn [result]
-	                   (sort-by (fn [h]
-	                     (or (get h :block/scheduled) (get h :block/deadline))) result))
-    :collapsed? false}
-   ]}
+    [
+      {:title [:b "📅 TODAY"]
+        :query [
+          :find (pull ?b [*])
+          :in $ ?today
+          :where
+            (or
+              [?b :block/scheduled ?d]
+              [?b :block/deadline ?d]
+            )
+            (not [?b :block/properties]) ;; exclude any blocks that have properties assigned
+            [(== ?d ?today)]
+        ]
+        :inputs [:today]
+        :breadcrumb-show? false
+        :table-view? false
+        :collapsed? false ;; Don't collapse the query block
+        :result-transform (fn [result]
+                  (sort-by (fn [h]
+                    (map (fn [m] (assoc m :block/collapsed? true))) ;; collapse blocks within query
+                    (or (get h :block/scheduled) (get h :block/deadline))) result))
+      }
+
+      {:title [:b "🗓️ THIS WEEK"]
+        :query [
+          :find (pull ?b [*])
+          :in $ ?start ?next
+          :where
+            (or
+              [?b :block/scheduled ?d]
+              [?b :block/deadline ?d]
+            )
+            (not [?b :block/properties]) ;; exclude any blocks that have properties assigned
+            [(> ?d ?start)]
+            [(<= ?d ?next)]
+          ]
+          :inputs [:today :7d-after]
+          :breadcrumb-show? false
+          :table-view? false
+          :result-transform (fn [result]
+	                  (sort-by (fn [h]
+                      (map (fn [m] (assoc m :block/collapsed? true))) ;; collapse blocks within query
+	                    (or (get h :block/scheduled) (get h :block/deadline))) result))
+          :collapsed? false ;; Don't collapse the query block
+      }
+    ]
+  }
 
  ;; Original Queries:
  ;; the "NOW" query asks the tasks which need to be finished "now",
