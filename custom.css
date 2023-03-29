@@ -1,137 +1,76 @@
 :root {
     /*--ls-font-family: "JetBrains Mono"; */
-    /* Nord by arcticicestudio */
-    --polar-night-00: #2E3440;
-    --polar-night-01: #3B4252;
-    --polar-night-02: #434C5E;
-    --polar-night-03: #4C566A;
-    --snow-storm-00: #D8DEE9;
-    --snow-storm-01: #E5E9F0;
-    --snow-storm-02: #ECEFF4;
-    --snow-storm-03: #f8f8fa;
-    --frost-00: #8FBCBB;
-    --frost-01: #88C0D0;
-    --frost-02: #81A1C1;
-    --frost-03: #5E81AC;
-    --aurora-red: #BF616A;
-    --aurora-orange: #D08770;
-    --aurora-yellow: #EBCB8B;
-    --aurora-green: #A3BE8C;
-    --aurora-green-hover: #90bb6a;
-    --aurora-purple: #B48EAD;
-    --button-blue: var(--frost-01);
-    --button-gray-1: var(--snow-storm-01);
-    --button-gray-2: var(--snow-storm-02);
-    --button-gray-3: var(--frost-00);
-}
 
-.light-theme, html[data-theme="light"] {
-    --ls-primary-background-color: var(--snow-storm-03);
-    --ls-secondary-background-color: var(--snow-storm-02);
-    --ls-tertiary-background-color: var(--snow-storm-01);
-	--ls-quaternary-background-color: var(--snow-storm-00);
-
-    --ls-link-text-color: var(--frost-03);
-
-    --ls-page-inline-code-color: var(--frost-03);
-	--ls-page-inline-code-bg-color: var(--snow-storm-00);
-
-    --ls-block-properties-background-color: var(--snow-storm-02);
-    --ls-block-highlight-color: var(--snow-storm-02);
-    --ls-block-bullet-border-color: var(--snow-storm-01);
-    --ls-block-bullet-color: var(--frost-00);
-
-    --ls-page-checkbox-color: var(--snow-storm-00);
-
-    --ls-primary-text-color: var(--polar-night-00);
-    --ls-title-text-color: var(--polar-night-03);
-    --ls-head-text-color: var(--frost-00);
-    --ls-secondary-text-color: var(--polar-night-01);
-
-    --ls-scrollbar-color: var(--snow-storm-00);
-    --ls-scrollbar-foreground-color: var(--snow-storm-00);
-    --ls-scrollbar-thumb-hover-color: var(--snow-storm-00);
-
-    --ls-search-icon-color: var(--frost-00);
-    --ls-search-background-color: var(--snow-storm-03);
-
-    --ls-selection-background-color: var(--frost-02);
-    --ls-selection-text-color: var(--ls-primary-text-color);
-
-    --ls-page-mark-color: var(--ls-primary-background-color);
-    --ls-page-mark-bg-color: var(--aurora-yellow);
-    --ls-page-properties-background-color: var(--ls-secondary-background-color);
-
-    --ls-guideline-color: var(--ls-secondary-background-color);
-    --ls-icon-color: var(--ls-secondary-background-color);
-    --ls-border-color: var(--ls-quaternary-background-color);
-    --ls-menu-hover-color: var(--ls-secondary-background-color);
-
-    --ls-table-tr-even-background-color: var(--ls-secondary-background-color);
-
-    --color-level-4: var(--frost-03);
-    --color-level-5: var(--frost-02);
-    --color-level-6: var(--frost-01);
+    --tri-comp-green: #A3BE8C;
+    --tri-comp-blue: #8CA3BE;
+    --tri-comp-purple: #BE8CA3;
+    --dark-00: #1C2126;
+    --dark-01: #22272E;
+    --dark-02: #272E35;
+    --dark-03: #2D343D;
+    --light-00: #EBECED;
+    --light-01: #D7D9DB;
+    --light-02: #C3C6C9;
+    --light-03: #AFB3B7;
 }
 
 .dark-theme, html[data-theme=dark] {
-    --ls-primary-background-color: var(--polar-night-00);
-    --ls-secondary-background-color: var(--polar-night-01);
-    --ls-tertiary-background-color: var(--polar-night-02);
-	--ls-quaternary-background-color: var(--polar-night-03);
+    --ls-primary-background-color: var(--dark-00);
+    --ls-secondary-background-color: var(--dark-01);
+    --ls-tertiary-background-color: var(--dark-02);
+	--ls-quaternary-background-color: var(--dark-03);
 
-    --ls-link-text-color: var(--frost-00);
+    /* this is for both [[links]] and #tags */
+    --ls-link-text-color: var(--tri-comp-blue);
 
-    --ls-page-inline-code-color: var(--frost-00);
-	--ls-page-inline-code-bg-color: var(--polar-night-02);
+    --ls-block-highlight-color: var(--ls-secondary-background-color);
+    --ls-block-properties-background-color: var(--ls-tertiary-background-color);
 
-    --ls-block-properties-background-color: var(--ls-secondary-background-color);
-    --ls-block-highlight-color: var(--polar-night-02);
-    --ls-block-bullet-border-color: var(--polar-night-02);
-    --ls-block-bullet-color: var(--frost-00);
+    --ls-block-bullet-border-color: var(--ls-quaternary-background-color);
+    --ls-block-bullet-color: var(--tri-comp-green);
 
-    --ls-page-checkbox-color: var(--polar-night-03);
+    --ls-scrollbar-color: var(--ls-quaternary-background-color);
+    --ls-scrollbar-foreground-color: var(--ls-quaternary-background-color);
+    --ls-scrollbar-thumb-hover-color: var(--ls-quaternary-background-color);
 
-    --ls-scrollbar-color: var(--polar-night-03);
-    --ls-scrollbar-foreground-color: var(--polar-night-03);
-    --ls-scrollbar-thumb-hover-color: var(--polar-night-03);
-
-    --ls-search-icon-color: var(--frost-00);
+    --ls-search-icon-color: var(--tri-comp-purple);
     --ls-search-background-color: var(--ls-primary-background-color);
 
-    --ls-selection-background-color: var(--frost-02);
+    --ls-selection-background-color: var(--dark-03);
     --ls-selection-text-color: var(--ls-primary-text-color);
 
+    --ls-page-inline-code-color: var(--tri-comp-purple);
+	--ls-page-inline-code-bg-color: var(--ls-secondary-background-color);
+    --ls-page-checkbox-color: var(--ls-quaternary-background-color);
     --ls-page-mark-color: var(--ls-primary-background-color);
-    --ls-page-mark-bg-color: var(--aurora-yellow);
+    --ls-page-mark-bg-color: var(--tri-comp-purple);
     --ls-page-properties-background-color: var(--ls-secondary-background-color);
+    
+    --ls-primary-text-color: var(--light-00);
+    --ls-secondary-text-color: var(--light-01);
 
-    --ls-title-text-color: var(--aurora-green);
-    --ls-head-text-color: var(--frost-00);
-    --ls-primary-text-color: var(--snow-storm-00);
-    --ls-secondary-text-color: var(--snow-storm-01);
-
-    --ls-guideline-color: var(--polar-night-01);
-    --ls-icon-color: var(--snow-storm-01);
-    --ls-border-color: var(--polar-night-03);
+    --ls-title-text-color: var(--tri-comp-green);
+    --ls-head-text-color: var(--tri-comp-green);
+    --ls-guideline-color: var(--dark-01);
+    --ls-icon-color: var(--ls-secondary-background-color);
+    --ls-border-color: var(--ls-quaternary-background-color);
     --ls-menu-hover-color: var(--ls-secondary-background-color);
-
     --ls-table-tr-even-background-color: var(--ls-secondary-background-color);
 
-    --color-level-4: var(--frost-03);
-    --color-level-5: var(--frost-02);
-    --color-level-6: var(--frost-01);
+    --color-level-4: #708298;
+    --color-level-5: #8A9CB2;
+    --color-level-6: #A3B5CB;
 }
 
 /* Force Selected Sidebar Item Style */
 .left-sidebar-inner a.item.active {
-    background-color: var(--frost-00);
+    background-color: var(--tri-comp-green);
     color: var(--ls-secondary-background-color);
 }
 
 /* Hashtag Styling */
 a.tag {
-    background-color: var(--ls-tertiary-background-color);
+    /*background-color: var(--ls-secondary-background-color);*/
     border-radius: 30px;
     padding: 0px 4px 0px 4px;
     color: var(--ls-link-text-color);
@@ -142,8 +81,14 @@ a.tag {
 }
 
 .ui__button {
-    background-color: var(--frost-00);
+    background-color: var(--tri-comp-green);
     color: var(--ls-secondary-background-color);
+}
+
+/* Highlight and bold current day in the date picker: */
+.datepicker td.active, .datepicker td.active:hover {
+    color: var(--tri-comp-purple);
+    font-weight: bold;
 }
 
 /* Wrap the content inside code blocks */
