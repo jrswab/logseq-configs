@@ -23,6 +23,7 @@
     /* this is for both [[links]] and #tags */
     --ls-link-text-color: var(--tri-comp-blue);
 
+	--ls-block-ref-link-text-color: var(--dark-03);
     --ls-block-highlight-color: var(--ls-secondary-background-color);
     --ls-block-properties-background-color: var(--ls-tertiary-background-color);
 
