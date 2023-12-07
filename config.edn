@@ -135,11 +135,74 @@
  :default-queries
  {:journals
     [
-      {:title [:b "📅 TODAY"]
+      {:title [:b "‼️ Do Now"]
+        :query [:find (pull ?block [*])
+          :where
+          [?block :block/marker ?marker]
+          (not [(contains? #{"DONE"} ?marker)])
+          [?block :block/content ?blockcontent]
+          [?block :block/page ?page]
+          [?page :block/name ?pagename]
+          (page-ref ?block "urgent")
+          (page-ref ?block "important")
+        ]
+        :collapsed? false
+        :breadcrumb-show? false
+        :table-view? false
+        :result-transform (fn [result]
+          (sort-by (fn [h] (or (get h :block/scheduled) (get h :block/deadline))) result))
+      }
+
+      {:title [:b "🗓 Needs Schedule"]
+        :query [:find (pull ?block [*])
+          :where
+          [?block :block/marker ?marker]
+          (not [(contains? #{"DONE"} ?marker)])
+          [?block :block/content ?blockcontent]
+          [?block :block/page ?page]
+          [?page :block/name ?pagename]
+          (page-ref ?block "not-urgent")
+          (page-ref ?block "important")
+          (not ;; Exclude ones the tasks is scheduled
+            (or
+              [?block :block/scheduled ?d]
+              [?block :block/deadline ?d]
+            )
+          )
+        ]
+        :collapsed? false
+        :breadcrumb-show? false
+        :table-view? false
+        :result-transform (fn [result]
+          (sort-by (fn [h] (or (get h :block/scheduled) (get h :block/deadline))) result))
+      }
+
+      {:title [:b "👉🏻 Needs Delegated"]
+        :query [:find (pull ?block [*])
+          :where
+          [?block :block/marker ?marker]
+          (not [(contains? #{"DONE"} ?marker)])
+          [?block :block/content ?blockcontent]
+          [?block :block/page ?page]
+          [?page :block/name ?pagename]
+          (page-ref ?block "urgent")
+          (page-ref ?block "not-important")
+        ]
+        :collapsed? false
+        :breadcrumb-show? false
+        :table-view? false
+        :result-transform (fn [result]
+          (sort-by (fn [h] (or (get h :block/scheduled) (get h :block/deadline))) result))
+      }
+
+
+      {:title [:b "📅 Do Today"]
         :query [
           :find (pull ?b [*])
           :in $ ?today
           :where
+            [?b :block/marker ?marker]
+            (not [(contains? #{"DONE"} ?marker)])
             (or
               [?b :block/scheduled ?d]
               [?b :block/deadline ?d]
@@ -152,35 +215,55 @@
         :table-view? false
         :collapsed? false ;; Don't collapse the query block
         :result-transform (fn [result]
-                  (sort-by (fn [h]
-                    (map (fn [m] (assoc m :block/collapsed? true))) ;; collapse blocks within query
-                    (or (get h :block/scheduled) (get h :block/deadline))) result))
+          (sort-by (fn [h] (or (get h :block/scheduled) (get h :block/deadline))) result))
       }
-
-      {:title [:b "🗓️ THIS WEEK"]
+     
+      {:title [:b "⚠️ Overdue"]
         :query [
           :find (pull ?b [*])
-          :in $ ?start ?next
+          :in $ ?today
           :where
+            [?b :block/marker ?marker]
+            (not [(contains? #{"DONE"} ?marker)])
             (or
-              [?b :block/scheduled ?d]
-              [?b :block/deadline ?d]
+             [?b :block/scheduled ?d]
+             [?b :block/deadline ?d]
             )
-            (not [?b :block/properties]) ;; exclude any blocks that have properties assigned
-            [(> ?d ?start)]
-            [(<= ?d ?next)]
+            [(<= ?d ?today)] ;; timestamp less than or equal to today
           ]
-          :inputs [:today :7d-after]
+          :inputs [:today]
           :breadcrumb-show? false
           :table-view? false
-          :result-transform (fn [result]
-	                  (sort-by (fn [h]
-                      (map (fn [m] (assoc m :block/collapsed? true))) ;; collapse blocks within query
-	                    (or (get h :block/scheduled) (get h :block/deadline))) result))
           :collapsed? false ;; Don't collapse the query block
+          :result-transform (fn [result]
+	          (sort-by (fn [h] (get h :block/deadline)) result))
       }
     ]
   }
+
+ ;; Other Queries:
+ ;;{:title [:b "🗓️ THIS WEEK"]
+ ;;  :query [
+ ;;    :find (pull ?b [*])
+ ;;    :in $ ?start ?next
+ ;;    :where
+ ;;      [?b :block/marker ?marker]
+ ;;      (not [(contains? #{"DONE"} ?marker)])
+ ;;      (or
+ ;;        [?b :block/scheduled ?d]
+ ;;        [?b :block/deadline ?d]
+ ;;      )
+ ;;      (not [?b :block/properties]) ;; exclude any blocks that have properties assigned
+ ;;      [(> ?d ?start)]
+ ;;      [(<= ?d ?next)]
+ ;;    ]
+ ;;    :inputs [:today :7d-after]
+ ;;    :breadcrumb-show? false
+ ;;    :table-view? false
+ ;;    :collapsed? false ;; Don't collapse the query block
+ ;;    :result-transform (fn [result]
+ ;;      (sort-by (fn [h] (or (get h :block/scheduled) (get h :block/deadline))) result))
+ ;;}
 
  ;; Original Queries:
  ;; the "NOW" query asks the tasks which need to be finished "now",
@@ -247,13 +330,13 @@
  ;; If we set the level's value to 3, `b` will be opened and `c` will be collapsed.
  :ref/default-open-blocks-level 2
 
- :ref/linked-references-collapsed-threshold 50
+ :ref/linked-references-collapsed-threshold 1
 
- :favorites ["inbox" "Templates" "TODO"]
+ :favorites ["Stoic Christian" "Books To Read" "inbox" "Templates" "TODO"]
  :journal/page-title-format "yyyy.MM.dd - EEE"
  :journal/file-name-format "yyyy_MM_dd"
  :feature/enable-flashcards? true
- :graph/settings {:builtin-pages? true, :journal? true, :orphan-pages? true, :excluded-pages? false}
+ :graph/settings {:builtin-pages? false, :journal? false, :orphan-pages? false, :excluded-pages? false}
 
  ;; any number between 0 and 1 (the greater it is the faster the changes of the next-interval of card reviews) (default 0.5)
  ;; :srs/learning-fraction 0.5
